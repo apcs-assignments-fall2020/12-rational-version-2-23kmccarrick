@@ -69,22 +69,29 @@ public class Rational
     // Returns whether or not the Rational is currently simplified
     // or not
     public boolean isSimplified() { 
-        return false; // YOUR CODE HERE
+        return greatestCommonFactor(this.numerator,this.denominator)==1; 
     }
 
     // Calculates the double value of our Rational
     public double calculateDecimalValue() { 
-        return 0.0; // YOUR CODE HERE
+        return (double)(this.numerator)/(double)(this.denominator); // YOUR CODE HERE
     }
 
     // Returns the Rational we get from raising  the rational number to an integer power
     public Rational pow(int exponent) {
-        return null; // YOUR CODE HERE
+        int num = 1;
+        int den = 1;
+        for(int i = 0; i < exponent; i++){
+            num *=this.numerator;
+            den*=this.denominator;
+        }
+        Rational x = new Rational(num,den);
+        return x; // YOUR CODE HERE
     }
 
     // Checks to see if either the numerator or denominator match a given number
     public boolean matches(int x) {
-        return false; // YOUR CODE HERE
+        return this.numerator==x||this.denominator==x;
     }
 
 
@@ -94,18 +101,21 @@ public class Rational
     // Methods you'll write for homework:
     // Returns whether or not the Rational is a negative number
     public boolean isNegative() { 
-        return false; // YOUR CODE HERE
+        return (this.numerator<0&&this.denominator>-1)||(this.numerator>-1&&this.denominator<0);
     }
 
     // Calculates the reciprocal of a Rational number.
     // The reciprocal of 3/4 is 4/3, the reciprocal of 1/2 is 2/1
     public Rational reciprocal() {
-        return null; // YOUR CODE HERE
+        Rational x = new Rational (this.denominator,this.numerator);
+        return x;
     }
 
     // Checks whether the current Rational is the exactly the same as other
     public boolean equals(Rational other) {
-        return false; // YOUR CODE HERE
+        Rational x = simplify(this);
+        Rational y = simplify(other);
+        return x.numerator==y.numerator&&x.denominator==y.denominator;
     }
 
 
